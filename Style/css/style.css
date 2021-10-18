@@ -6,6 +6,7 @@ Layout
 Components
 */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -355,38 +356,132 @@ html, body {
   position: relative;
 }
 
+.containerTop {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+.input-section {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  font-family: "Montserrat", sans-serif;
+}
+.input-section .block {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
+}
+.input-section .block * {
+  margin: 10px 0;
+}
+.input-section .block label {
+  font-weight: 500;
+}
+.input-section .--1 {
+  border-top: 2px solid #eff2f3;
+  border-left: 2px solid #eff2f3;
+}
+.input-section .--2 {
+  border-top: 2px solid #eff2f3;
+  border-left: 2px solid #eff2f3;
+  border-right: 2px solid #eff2f3;
+}
+.input-section .--3 {
+  border-top: 2px solid #eff2f3;
+  border-left: 2px solid #eff2f3;
+  border-bottom: 2px solid #eff2f3;
+}
+.input-section .--4 {
+  border-top: 2px solid #eff2f3;
+  border-left: 2px solid #eff2f3;
+  border-bottom: 2px solid #eff2f3;
+  border-right: 2px solid #eff2f3;
+}
+
 .overview {
   display: flex;
+  flex-direction: column;
   width: fit-content;
 }
-.overview tr,
-.overview th,
-.overview td {
-  padding: 10px;
+.overview table {
+  border-collapse: collapse;
 }
-.overview tr input {
+.overview table tr,
+.overview table th,
+.overview table td {
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+}
+.overview table tr input {
   margin-left: 10px;
   width: 40px;
 }
-.overview tr td:nth-child(2) {
+.overview table tr td:nth-child(2) {
   float: right;
 }
-.overview table {
-  background-color: #3b4446;
+.overview table thead {
+  color: #166a8f;
+  border-bottom: 2px solid #313335;
+  font-weight: 500;
+}
+.overview table tbody tr {
+  border-bottom: 1px solid #e6e6e6;
+}
+.overview table tbody tr:first-child {
+  color: #313335;
+}
+.overview table tbody tr:nth-last-child(1) {
+  color: #166a8f;
+  font-weight: 500;
+}
+
+.detailed-info {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: fit-content;
+}
+.detailed-info table {
   border-collapse: collapse;
 }
-.overview th {
-  background-color: #3b4446;
-  color: white;
+.detailed-info table tr,
+.detailed-info table th,
+.detailed-info table td {
+  padding: 10px;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
 }
-.overview tr:nth-child(even) {
-  background-color: #e6e6e6;
+.detailed-info table tr input {
+  margin-left: 10px;
+  width: 40px;
 }
-.overview tr:nth-child(odd) {
-  background-color: #c6c6c6;
+.detailed-info table thead {
+  color: #313335;
+  border-bottom: 2px solid #313335;
+  font-weight: 500;
 }
-.overview td:nth-child(3) {
+.detailed-info table tbody tr {
+  border-bottom: 1px solid #e6e6e6;
+}
+.detailed-info table tbody td:nth-child(8) {
   text-align: right;
+}
+.detailed-info .buttons {
+  display: flex;
+  flex-direction: column;
+}
+.detailed-info .buttons button {
+  margin: 2px;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+.detailed-info .edit {
+  border-color: #2dbe60;
+}
+.detailed-info .delete {
+  border-color: #ff6f62;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,0 +1,39 @@
+.input-section{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    font-family: $font-stack-primary;
+    
+
+    .block{
+        @include flexy($dir:column);
+        padding: 30px 20px;
+        *{
+            margin: 10px 0;
+        }
+        label{
+            font-weight: 500;
+        }
+        
+    }
+    .--1{
+        border-top: $stdBorder;
+        border-left: $stdBorder;
+    }
+    .--2{
+        border-top: $stdBorder;
+        border-left: $stdBorder;
+        border-right: $stdBorder;
+    }
+    .--3{
+        border-top: $stdBorder;
+        border-left: $stdBorder;
+        border-bottom: $stdBorder;
+    }
+    .--4{
+        border-top: $stdBorder;
+        border-left: $stdBorder;
+        border-bottom: $stdBorder;
+        border-right: $stdBorder;
+    }
+}

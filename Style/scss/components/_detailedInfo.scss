@@ -1,5 +1,6 @@
-.overview {
-  @include flexy($dir: column);
+.detailed-info{
+    @include flexy($dir: column);
+    margin: 0 auto;
   width: fit-content;
   table {
     tr,
@@ -7,6 +8,7 @@
     td {
       padding: 10px;
       font-family: $font-stack-primary;
+      text-align: center;
     }
 
     tr {
@@ -14,13 +16,10 @@
         margin-left: 10px;
         width: 40px;
       }
-      td:nth-child(2) {
-        float: right;
-      }
     }
     border-collapse: collapse;
     thead {
-      color: $blue1;
+      color: $dark1;
       border-bottom: 2px solid $dark1;
       font-weight: 500;
     }
@@ -28,13 +27,24 @@
       tr {
         border-bottom: 1px solid $gray1;
       }
-      tr:first-child{
-          color: $dark1;
-      }
-      tr:nth-last-child(1) {
-        color: $blue1;
-        font-weight: 500;
+      td:nth-child(8){
+          text-align: right;
       }
     }
+}
+
+.buttons{
+  @include flexy($dir:column);
+  button{
+    margin: 2px;
+    border-radius: 5px;
+    padding: 2px 5px;
   }
+}
+.edit{
+  border-color: $green1;
+}
+.delete{
+  border-color: $red2;
+}
 }
