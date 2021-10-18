@@ -1,0 +1,37 @@
+.overview {
+  @include flexy();
+  width: fit-content;
+  tr,
+  th,
+  td {
+    padding: 10px;
+  }
+
+  tr {
+    input {
+      margin-left: 10px;
+      width: 40px;
+    }
+    td:nth-child(2) {
+      float: right;
+    }
+  }
+
+  table {
+    background-color: $dark1;
+    border-collapse: collapse;
+  }
+  th {
+    background-color: $dark1;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: $gray1;
+  }
+  tr:nth-child(odd) {
+    background-color: $gray2;
+  }
+  td:nth-child(3){
+    text-align: right;
+  }
+}
