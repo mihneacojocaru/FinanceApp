@@ -150,30 +150,30 @@ export default class ViewHome{
         <div class="input-section">
         <div class="block --1">
           <label for="">Date</label>
-          <input type="date">
+          <input type="date" id="dateValue">
           <label for="">Description</label>
-          <input type="text">
+          <input type="text" id="descriptionValue">
         </div>
         <div class="block --2">
-          <label for="">Expences</label>
-          <input type="text">
+          <label for="">Expence</label>
+          <input type="text" id="expenceValue">
           <label for="">Incomme</label>
-          <input type="text">
+          <input type="text" id="incommeValue">
         </div>
         <div class="block --3">
           <label for="">Category</label>
-          <select id="category">
-            <option>Select</option>
-            <option value="incomme">Incomme</option>
-            <option value="groceries">Groceries</option>
-            <option value="rent">Rent</option>
-            <option value="transportation">Transportation</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="clothing">Clothing</option>
-            <option value="leisure">Leisure</option>
-            <option value="education">Education</option>
-            <option value="taxes">Taxes</option>
-            <option value="extras">Extras</option>
+          <select id="categoryValue">
+            <option placeholder="Select"></option>
+            <option value="Incomme">Incomme</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Rent">Rent</option>
+            <option value="Transportation">Transportation</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Leisure">Leisure</option>
+            <option value="Education">Education</option>
+            <option value="Taxes">Taxes</option>
+            <option value="Extras">Extras</option>
         </select>
           <label for="">Cash/Card</label>
           <select id="cashCard">
@@ -185,11 +185,9 @@ export default class ViewHome{
           <label>Refunded</label>
           <form action="">
             <label for="yes">Yes</label>
-            <input type="checkbox" name="yes">
-            <label for="no">No</label>
-            <input type="checkbox" name="no">
+            <input type="checkbox" name="yes" id="refundedCheck">
           </form>
-          <button class="addBtn">Add</button>  
+          <button id="addBtn">Add</button>  
         </div>
       </div>
                                     `;

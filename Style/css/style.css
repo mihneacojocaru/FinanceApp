@@ -380,24 +380,24 @@ html, body {
   font-weight: 500;
 }
 .input-section .--1 {
-  border-top: 2px solid #eff2f3;
-  border-left: 2px solid #eff2f3;
+  border-top: 1px solid #eff2f3;
+  border-left: 1px solid #eff2f3;
 }
 .input-section .--2 {
-  border-top: 2px solid #eff2f3;
-  border-left: 2px solid #eff2f3;
-  border-right: 2px solid #eff2f3;
+  border-top: 1px solid #eff2f3;
+  border-left: 1px solid #eff2f3;
+  border-right: 1px solid #eff2f3;
 }
 .input-section .--3 {
-  border-top: 2px solid #eff2f3;
-  border-left: 2px solid #eff2f3;
-  border-bottom: 2px solid #eff2f3;
+  border-top: 1px solid #eff2f3;
+  border-left: 1px solid #eff2f3;
+  border-bottom: 1px solid #eff2f3;
 }
 .input-section .--4 {
-  border-top: 2px solid #eff2f3;
-  border-left: 2px solid #eff2f3;
-  border-bottom: 2px solid #eff2f3;
-  border-right: 2px solid #eff2f3;
+  border-top: 1px solid #eff2f3;
+  border-left: 1px solid #eff2f3;
+  border-bottom: 1px solid #eff2f3;
+  border-right: 1px solid #eff2f3;
 }
 
 .overview {
@@ -465,7 +465,7 @@ html, body {
 .detailed-info table tbody tr {
   border-bottom: 1px solid #e6e6e6;
 }
-.detailed-info table tbody td:nth-child(8) {
+.detailed-info table tbody td:nth-child(8), .detailed-info table tbody td:nth-child(9) {
   text-align: right;
 }
 .detailed-info .buttons {
