@@ -1,4 +1,5 @@
 import FinanceEntry from "../Model/financeEntry.js";
+import ViewHome from "../View/ViewHome.js";
 
 
 export default class ControllerFinancesApp{
@@ -6,8 +7,8 @@ export default class ControllerFinancesApp{
     constructor(){
         this.financeEntry;
         this.addBtn = document.getElementById("addBtn");
-        this.onAddBtn();
-        
+        // this.onAddBtn();
+        // this.readFromDB();
     }
 
     getFormData = () => {
@@ -71,11 +72,23 @@ export default class ControllerFinancesApp{
 
     onAddBtn = () => {
         this.addBtn.addEventListener("click", () => {
-            this.getFormData();         
+            this.getFormData();
         });
     }
 
+    readFromDB = () => {
+        let list = [];
+        let storage = JSON.parse(localStorage.getItem("FinancesApp"));
+
+        for(let item of storage){
+            list.push(item);
+        }
+
+        return list;
+    }
+
     updateLocalStorage = (obj) => {
+        
         let list = [];   
         try {
             if(localStorage.getItem("FinancesApp") === null){

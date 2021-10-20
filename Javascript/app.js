@@ -3,4 +3,4 @@ import ViewHome from "./View/ViewHome.js";
 
 let viewHome = new ViewHome();
 
-let controller = new ControllerFinancesApp();
+//let controller = new ControllerFinancesApp();

@@ -1,3 +1,5 @@
+import ControllerFinancesApp from "../Controller/controllerFinancesApp.js";
+
 
 export default class ViewHome{
 
@@ -9,11 +11,14 @@ export default class ViewHome{
         this.overviewTable();
         this.inputSection();
         this.detailedInfo();
+        
         this.tbody = document.getElementById('infoCont');
-        this.tableRow(1,"2.Jan","Payment","Extras","Card","€","No",50);
-        this.tableRow(2,"10.Feb","Lidl","Groceries","Card","€","No",20);
-        this.tableRow(2,"12.Feb","Work","Incomme","Card","€","No",0,2000);
 
+        this.ctrlFinancesApp = new ControllerFinancesApp();
+
+        this.getDBInfo();
+        this.addBtn = document.querySelector("#addBtn");
+        this.onAddClick();
     }
 
     overviewTable = () => {
@@ -141,7 +146,6 @@ export default class ViewHome{
                             <td>
                         </tr>   
                         `;
-
         this.tbody.innerHTML += tableRow;
     }
 
@@ -194,6 +198,44 @@ export default class ViewHome{
         this.containerTop.innerHTML += inputSection;
     }
 
+    getDBInfo = () => {
+        this.tbody.innerHTML = "";
+
+        let x = this.ctrlFinancesApp.readFromDB();
+
+        let month;
+        let date;
+        let description;
+        let category;
+        let cashCard;
+        let refunded;
+        let expence;
+        let incomme;        
+
+        for(let i of x){
+            
+            let rawDate = i.date;
+            rawDate = rawDate.split("-");
+            month = rawDate[1];
+            date = rawDate[2]+"."+rawDate[1];
+            description = i.description;
+            category = i.category;
+            cashCard = i.cashCard;
+            refunded = i.refunded;
+            expence = i.expence;
+            incomme = i.incomme;
+
+            this.tableRow(month,date,description,category,cashCard,"€",refunded,expence,incomme);
+            
+        }
+    }
+
+    onAddClick = () => {
+        this.addBtn.addEventListener("click", () => {   
+            this.ctrlFinancesApp.getFormData();
+            this.getDBInfo();
+        });
+    }
 }
 
 
