@@ -11,6 +11,17 @@ export default class ControllerFinancesApp{
         // this.readFromDB();
     }
 
+    readFromDB = () => {
+        let list = [];
+        let storage = JSON.parse(localStorage.getItem("FinancesApp"));
+
+        for(let item of storage){
+            list.push(item);
+        }
+
+        return list;
+    }
+
     getFormData = () => {
         const date = document.querySelector("#dateValue").value;
         const description = document.querySelector("#descriptionValue").value.trim();
@@ -76,17 +87,6 @@ export default class ControllerFinancesApp{
         });
     }
 
-    readFromDB = () => {
-        let list = [];
-        let storage = JSON.parse(localStorage.getItem("FinancesApp"));
-
-        for(let item of storage){
-            list.push(item);
-        }
-
-        return list;
-    }
-
     updateLocalStorage = (obj) => {
         
         let list = [];   
@@ -115,18 +115,27 @@ export default class ControllerFinancesApp{
         for (let item of storage){
             list.push(item);
         }
-        for( let element of list){
-            if( element.cashCard == obj.cashCard &&
-                element.category == obj.category &&
-                element.date == obj.date &&
-                element.description == obj.description &&
-                element.expence == obj.expence &&
-                element.incomme == obj.incomme && 
-                element.refunded == obj.refunded
-               ){          
-                list = list.filter(param => param !== element);
+
+        // for( let element of list){
+        //     if( element.cashCard == obj.cashCard &&
+        //         element.category == obj.category &&
+        //         element.date == obj.date &&
+        //         element.description == obj.description &&
+        //         element.expence == obj.expence &&
+        //         element.incomme == obj.incomme && 
+        //         element.refunded == obj.refunded
+        //        ){         
+        //         list = list.filter(item => item !== element);
+        //     }
+        // }
+        let y = JSON.parse(JSON.stringify(obj));
+        list.forEach( e => {
+            let x = JSON.parse(JSON.stringify(e));
+            
+            if(x == y){
+                console.log("aici");
             }
-        }
+        })
         localStorage.setItem("FinancesApp",JSON.stringify(list));
     }
 

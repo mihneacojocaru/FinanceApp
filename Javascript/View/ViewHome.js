@@ -18,7 +18,10 @@ export default class ViewHome{
 
         this.getDBInfo();
         this.addBtn = document.querySelector("#addBtn");
+
         this.onAddClick();
+
+        this.onDeleteClick();
     }
 
     overviewTable = () => {
@@ -235,6 +238,27 @@ export default class ViewHome{
             this.ctrlFinancesApp.getFormData();
             this.getDBInfo();
         });
+    }
+
+    onDeleteClick = () => {
+        this.tbody.addEventListener("click", this.deleteItem);
+    }
+
+    deleteItem = e => {
+        const obj = e.target;
+        if(obj.className == "delete"){
+            let obj = {
+                cashCard:"card",
+                category:"Extras",
+                date:"2021-10-25",
+                description:"Test2",
+                expence:1111,
+                income:0,
+                refunded:"No"
+            }
+            this.ctrlFinancesApp.deleteItem(obj);
+            this.getDBInfo();
+        }
     }
 }
 
