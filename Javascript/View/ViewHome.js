@@ -104,7 +104,6 @@ export default class ViewHome{
         <table>
           <thead>
             <tr>
-              <th>Month</th>
               <th>Date</th>
               <th>Description</th>
               <th>Category</th>
@@ -116,8 +115,7 @@ export default class ViewHome{
               <th>Options</th>
             </tr>
           </thead>
-          <tbody id="infoCont"> 
-          </tbody>
+          <tbody id="infoCont"></tbody>
         </table>
       </div>
         `;
@@ -125,10 +123,9 @@ export default class ViewHome{
     this.container.innerHTML += details;
     }
 
-    tableRow = (monthNr,date,desc,cat,cashCard,currency,refund,expence=0,incomme=0) => {
+    tableRow = (date,desc,cat,cashCard,currency,refund,expence=0,incomme=0) => {
         const tableRow = `
                         <tr>
-                            <td>${monthNr}</td>
                             <td>${date}</td>
                             <td>${desc}</td>
                             <td>${cat}</td>
@@ -146,7 +143,7 @@ export default class ViewHome{
                             <td class="buttons">
                                 <button class="edit">Edit</button>
                                 <button class="delete">Delete</button>
-                            <td>
+                            </ td>
                         </tr>   
                         `;
         this.tbody.innerHTML += tableRow;
@@ -206,7 +203,6 @@ export default class ViewHome{
 
         let x = this.ctrlFinancesApp.readFromDB();
 
-        let month;
         let date;
         let description;
         let category;
@@ -219,7 +215,6 @@ export default class ViewHome{
             
             let rawDate = i.date;
             rawDate = rawDate.split("-");
-            month = rawDate[1];
             date = rawDate[2]+"."+rawDate[1]+"."+rawDate[0];
             description = i.description;
             category = i.category;
@@ -228,7 +223,7 @@ export default class ViewHome{
             expence = i.expence;
             incomme = i.incomme;
 
-            this.tableRow(month,date,description,category,cashCard,"€",refunded,expence,incomme);
+            this.tableRow(date,description,category,cashCard,"€",refunded,expence,incomme);
             
         }
     }
@@ -241,23 +236,34 @@ export default class ViewHome{
     }
 
     onDeleteClick = () => {
-        this.tbody.addEventListener("click", this.deleteItem);
+        this.tbody.addEventListener("click", this.deleteFunction);
     }
 
-    deleteItem = e => {
+    deleteFunction = e => {
         const obj = e.target;
         if(obj.className == "delete"){
-            let obj = {
-                cashCard:"card",
-                category:"Extras",
-                date:"2021-10-25",
-                description:"Test2",
-                expence:1111,
-                incomme:"0",
-                refunded:"No"
+
+            let rawDate = obj.parentNode.parentNode.children[0].textContent;            
+            rawDate = rawDate.split(".");            
+            rawDate = rawDate[2] + "-" + rawDate[1] +"-"+ rawDate[0];
+
+
+            let item = {
+                cashCard:obj.parentNode.parentNode.children[3].textContent,
+                category:obj.parentNode.parentNode.children[2].textContent,
+                date:rawDate,
+                description:obj.parentNode.parentNode.children[1].textContent,
+                expence:obj.parentNode.parentNode.children[6].children[0].textContent,
+                incomme:obj.parentNode.parentNode.children[7].children[0].textContent,
+                refunded:obj.parentNode.parentNode.children[5].textContent
             }
-            this.ctrlFinancesApp.deleteItem(obj);
+
+            this.ctrlFinancesApp.deleteItem(item);
             this.getDBInfo();
+        } else if(obj.className == "edit"){
+
+            console.log("editFunction");
+
         }
     }
 }

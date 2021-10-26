@@ -15,8 +15,10 @@ export default class ControllerFinancesApp{
         let list = [];
         let storage = JSON.parse(localStorage.getItem("FinancesApp"));
 
-        for(let item of storage){
-            list.push(item);
+        if(storage){
+            for(let item of storage){
+                list.push(item);
+            }
         }
 
         return list;
