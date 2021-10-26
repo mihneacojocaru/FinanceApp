@@ -220,7 +220,7 @@ export default class ViewHome{
             let rawDate = i.date;
             rawDate = rawDate.split("-");
             month = rawDate[1];
-            date = rawDate[2]+"."+rawDate[1];
+            date = rawDate[2]+"."+rawDate[1]+"."+rawDate[0];
             description = i.description;
             category = i.category;
             cashCard = i.cashCard;
@@ -253,7 +253,7 @@ export default class ViewHome{
                 date:"2021-10-25",
                 description:"Test2",
                 expence:1111,
-                income:0,
+                incomme:"0",
                 refunded:"No"
             }
             this.ctrlFinancesApp.deleteItem(obj);

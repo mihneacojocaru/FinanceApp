@@ -115,25 +115,17 @@ export default class ControllerFinancesApp{
         for (let item of storage){
             list.push(item);
         }
-
-        // for( let element of list){
-        //     if( element.cashCard == obj.cashCard &&
-        //         element.category == obj.category &&
-        //         element.date == obj.date &&
-        //         element.description == obj.description &&
-        //         element.expence == obj.expence &&
-        //         element.incomme == obj.incomme && 
-        //         element.refunded == obj.refunded
-        //        ){         
-        //         list = list.filter(item => item !== element);
-        //     }
-        // }
-        let y = JSON.parse(JSON.stringify(obj));
+        
         list.forEach( e => {
-            let x = JSON.parse(JSON.stringify(e));
-            
-            if(x == y){
-                console.log("aici");
+            if(e.cashCard == obj.cashCard
+            && e.category == obj.category
+            && e.date == obj.date
+            && e.description == obj.description
+            && e.expence == obj.expence
+            && e.incomme == obj.incomme
+            && e.refunded == obj.refunded
+                ){
+                list = list.filter(item => item !== e);
             }
         })
         localStorage.setItem("FinancesApp",JSON.stringify(list));
