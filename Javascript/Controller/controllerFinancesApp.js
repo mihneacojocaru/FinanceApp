@@ -74,6 +74,23 @@ export default class ControllerFinancesApp{
         this.resetForm();
     }
 
+    putFormData = (obj) => {
+        const description = document.querySelector("#descriptionValue");
+        const date = document.querySelector("#dateValue");
+        const category = document.querySelector("#categoryValue");
+        const cashCard = document.querySelector("#cashCard");
+        const expence = document.querySelector("#expenceValue");
+        const incomme = document.querySelector("#incommeValue");
+        const newRefunded = document.querySelector("#refundedCheck");
+        description.value = obj.description;
+        date.value = obj.date;
+        category.value = obj.category;
+        cashCard.value = obj.cashCard;
+        expence.value = obj.expence;
+        incomme.value = obj.incomme;
+        //newRefunded.checked = obj.refunded;
+    }
+
     resetForm = () => {
         document.querySelector("#dateValue").value = "";
         document.querySelector("#descriptionValue").value = "";

@@ -20,10 +20,83 @@ export default class ViewHome{
         this.addBtn = document.querySelector("#addBtn");
 
         this.onAddClick();
-
         this.onDeleteClick();
+        this.onEditClick();
     }
 
+    overviewTable2 = () => {
+        const overViewTable = `<div class="overview">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Month <input type="number" placeholder="1" min="1" max="12"></th>
+                                    <th>Totals</th>
+                                    <th>€</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Incomme</td>
+                                    <td>1000</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Groceries</td>
+                                    <td>300</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Rent</td>
+                                    <td>150</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Transportation</td>
+                                    <td>50</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Maintenance</td>
+                                    <td>20</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Clothing</td>
+                                    <td>0</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Leisure</td>
+                                    <td>30</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Education</td>
+                                    <td>100</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Taxes</td>
+                                    <td>100</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Extras</td>
+                                    <td>50</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Sum</td>
+                                    <td>500</td>
+                                    <td>€</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    `;
+
+        this.containerTop.innerHTML += overViewTable;
+    }
     overviewTable = () => {
         const overViewTable = `<div class="overview">
                         <table>
@@ -236,7 +309,7 @@ export default class ViewHome{
     }
 
     onDeleteClick = () => {
-        this.tbody.addEventListener("click", this.deleteFunction);
+        this.tbody.addEventListener("click",this.deleteFunction);
     }
 
     deleteFunction = e => {
@@ -260,12 +333,37 @@ export default class ViewHome{
 
             this.ctrlFinancesApp.deleteItem(item);
             this.getDBInfo();
-        } else if(obj.className == "edit"){
-
-            console.log("editFunction");
-
         }
     }
+
+    onEditClick = () => {
+        this.tbody.addEventListener("click",this.editFunction);
+    }
+
+    editFunction = e => {
+        const obj = e.target; 
+        if(obj.className == "edit"){
+            console.log("Edit clicked");
+            let rawDate = obj.parentNode.parentNode.children[0].textContent;            
+            rawDate = rawDate.split(".");            
+            rawDate = rawDate[2] + "-" + rawDate[1] +"-"+ rawDate[0];
+            let item = {
+                cashCard:obj.parentNode.parentNode.children[3].textContent,
+                category:obj.parentNode.parentNode.children[2].textContent,
+                date:rawDate,
+                description:obj.parentNode.parentNode.children[1].textContent,
+                expence:obj.parentNode.parentNode.children[6].children[0].textContent,
+                incomme:obj.parentNode.parentNode.children[7].children[0].textContent,
+                refunded:obj.parentNode.parentNode.children[5].textContent
+            }
+            this.ctrlFinancesApp.putFormData(item);
+            this.ctrlFinancesApp.deleteItem(item);
+            this.getDBInfo();
+            window.scrollTo(0,0);
+            
+        }
+    }
+
 }
 
 
