@@ -8,7 +8,7 @@ export default class ViewHome{
         this.containerTop = document.createElement('div');
         this.containerTop.className = "containerTop";
         this.container.appendChild(this.containerTop);
-        this.overviewTable();
+        this.overviewSection();
         this.inputSection();
         this.detailedInfo();
         
@@ -22,154 +22,140 @@ export default class ViewHome{
         this.onAddClick();
         this.onDeleteClick();
         this.onEditClick();
+
+        this.overviewFunctionality();
     }
 
-    overviewTable2 = () => {
-        const overViewTable = `<div class="overview">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Month <input type="number" placeholder="1" min="1" max="12"></th>
-                                    <th>Totals</th>
-                                    <th>€</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Incomme</td>
-                                    <td>1000</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Groceries</td>
-                                    <td>300</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Rent</td>
-                                    <td>150</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Transportation</td>
-                                    <td>50</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Maintenance</td>
-                                    <td>20</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Clothing</td>
-                                    <td>0</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Leisure</td>
-                                    <td>30</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Education</td>
-                                    <td>100</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Taxes</td>
-                                    <td>100</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Extras</td>
-                                    <td>50</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Total Sum</td>
-                                    <td>500</td>
-                                    <td>€</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    `;
-
-        this.containerTop.innerHTML += overViewTable;
+    overviewSection = () => {
+        this.overviewTable();
+        let tableBody = document.getElementById("overviewBody");
+        tableBody.innerHTML += this.overviewContent();
     }
+
     overviewTable = () => {
+        let thisMonth = new Date();
+        thisMonth = thisMonth.getMonth() + 1;
+
         const overViewTable = `<div class="overview">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Month <input type="number" placeholder="1" min="1" max="12"></th>
+                                    <th>Month <input id="monthValue" type="number" value="${thisMonth}" min="1" max="12"></th>
                                     <th>Totals</th>
                                     <th>€</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Incomme</td>
-                                    <td>1000</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Groceries</td>
-                                    <td>300</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Rent</td>
-                                    <td>150</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Transportation</td>
-                                    <td>50</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Maintenance</td>
-                                    <td>20</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Clothing</td>
-                                    <td>0</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Leisure</td>
-                                    <td>30</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Education</td>
-                                    <td>100</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Taxes</td>
-                                    <td>100</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Extras</td>
-                                    <td>50</td>
-                                    <td>€</td>
-                                </tr>
-                                <tr>
-                                    <td>Total Sum</td>
-                                    <td>500</td>
-                                    <td>€</td>
-                                </tr>
-                            </tbody>
+                            <tbody id="overviewBody"></tbody>
                         </table>
                         </div>
                     `;
 
         this.containerTop.innerHTML += overViewTable;
     }
+
+    overviewContent = (incomme=0,groceries=0,rent=0,transportation=0,maintenance=0,clothing=0,leisure=0,education=0,taxes=0,extras=0,total=0) => {
+        const overviewContent = `<tr>
+                                    <td>Incomme</td>
+                                    <td>${incomme}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Groceries</td>
+                                    <td>${groceries}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Rent</td>
+                                    <td>${rent}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Transportation</td>
+                                    <td>${transportation}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Maintenance</td>
+                                    <td>${maintenance}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Clothing</td>
+                                    <td>${clothing}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Leisure</td>
+                                    <td>${leisure}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Education</td>
+                                    <td>${education}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Taxes</td>
+                                    <td>${taxes}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Extras</td>
+                                    <td>${extras}</td>
+                                    <td>€</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Sum</td>
+                                    <td>${total}</td>
+                                    <td>€</td>
+                                </tr>
+                                `;
+
+        return overviewContent;
+    }
+
+    overviewFunctionality = () => {
+        let monthValue = document.getElementById("monthValue");
+        let tableBody = document.getElementById("overviewBody");
+
+        let incomme = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Incomme");
+        let groceries = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Groceries");
+        let rent = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Rent");
+        let transportation = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Transportation");
+        let maintenance = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Maintentance");
+        let clothing = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Clothing");
+        let leisure = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Leisure");
+        let education = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Education");
+        let taxes = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Taxes");
+        let extras = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Extras");
+
+        let total = groceries + rent + transportation + maintenance + clothing + leisure + education + taxes + extras;
+
+        tableBody.innerHTML = "";
+        tableBody.innerHTML += this.overviewContent(incomme,groceries,rent,transportation,maintenance,clothing,leisure,education,taxes,extras,total);
+
+        monthValue.addEventListener("change", () => {
+            
+            let incomme = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Incomme");
+            let groceries = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Groceries");
+            let rent = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Rent");
+            let transportation = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Transportation");
+            let maintenance = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Maintentance");
+            let clothing = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Clothing");
+            let leisure = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Leisure");
+            let education = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Education");
+            let taxes = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Taxes");
+            let extras = this.ctrlFinancesApp.getDataByMonth(monthValue.value,"Extras");
+
+            let total = groceries + rent + transportation + maintenance + clothing + leisure + education + taxes + extras;
+
+            tableBody.innerHTML = "";
+            tableBody.innerHTML += this.overviewContent(incomme,groceries,rent,transportation,maintenance,clothing,leisure,education,taxes,extras,total);
+        })
+
+        
+    }
+    
 
     detailedInfo = () => {
         let details = `
@@ -299,6 +285,7 @@ export default class ViewHome{
             this.tableRow(date,description,category,cashCard,"€",refunded,expence,incomme);
             
         }
+        this.overviewFunctionality();
     }
 
     onAddClick = () => {
@@ -363,6 +350,8 @@ export default class ViewHome{
             
         }
     }
+
+
 
 }
 

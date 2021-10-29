@@ -8,7 +8,7 @@ export default class ControllerFinancesApp{
         this.financeEntry;
         this.addBtn = document.getElementById("addBtn");
         // this.onAddBtn();
-        // this.readFromDB();
+        this.readFromDB();
     }
 
     readFromDB = () => {
@@ -20,6 +20,11 @@ export default class ControllerFinancesApp{
                 list.push(item);
             }
         }
+
+        list.sort((a,b) => {
+            return a.date.split("-")[2] - b.date.split("-")[2] 
+            && a.date.split("-")[1] - b.date.split("-")[1];
+        });
 
         return list;
     }
@@ -160,5 +165,30 @@ export default class ControllerFinancesApp{
         
         this.deleteItem(x);
         
+    }
+
+    getDataByMonth = (monthValue,category) => {
+        let dB = this.readFromDB();
+        let list = [];
+        let numbersArray = [];
+        for(let item of dB){
+            if(parseInt(item.date.split("-")[1]) == monthValue){
+                list.push(item);
+            }
+        }
+
+        for(let item of list){
+            if(item.expence != 0 && item.category == category){
+                numbersArray.push(item.expence);
+            } else if(category == "Incomme"){
+                numbersArray.push(item.incomme);
+            }
+        }
+
+        if(numbersArray.length != 0){
+            return numbersArray.reduce((a,b) => a + b);
+        }else{
+            return 0;
+        }
     }
 }
